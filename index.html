@@ -299,6 +299,15 @@ const rollBtn = document.getElementById("rollBtn");
 let position = 0;
 let tiles = [];
 
+const roomId =
+  window.location.pathname.split("/").pop();
+
+const params =
+  new URLSearchParams(window.location.search);
+
+const session =
+  params.get("session");
+
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
@@ -538,7 +547,7 @@ function getPathPositions() {
 
 function renderBoard() {
 
-  tiles = makeTileData();
+
 
   const positions = getPathPositions();
 
@@ -707,7 +716,24 @@ rollBtn.addEventListener("click", () => {
   }, 70);
 });
 
-renderBoard();
+async function loadRoom() {
+
+  const res = await fetch(
+    `/api/life/room/${roomId}`
+  );
+
+  const data = await res.json();
+
+  tiles = data.tiles.map(t => ({
+    type: t.tile_type,
+    text: t.tile_text
+  }));
+
+  renderBoard();
+
+}
+
+loadRoom();
 </script>
 
 </body>
