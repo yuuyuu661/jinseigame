@@ -706,9 +706,23 @@ rollBtn.addEventListener("click", () => {
 
       const data = await res.json();
 
+      if (data.error === "no dice") {
+
+        result.innerHTML =
+          "サイコロがありません";
+
+        diceEl.classList.remove("shake");
+
+        clearInterval(interval);
+
+        return;
+      }
+
       const dice = data.dice;
 
       position = data.position;
+
+      diceCount--;
 
       diceImage.src = `/static/dice/${dice}.png`;
 
@@ -761,6 +775,8 @@ async function loadRoom() {
   const meData = await meRes.json();
 
   position = meData.position;
+
+  diceCount = meData.dice_count;
 
   renderBoard();
 
