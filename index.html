@@ -850,7 +850,8 @@ rollBtn.addEventListener("click", () => {
 
       position = data.position;
 
-      diceCount--;
+      diceCount =
+        data.dice_count || 0;
 
       document.getElementById(
         "diceCountText"
@@ -909,7 +910,7 @@ async function loadRoom() {
 
   position = meData.position;
 
-  diceCount = meData.dice_count;
+  diceCount = meData.dice_count || 0;
   document.getElementById(
     "diceCountText"
   ).innerText =
