@@ -719,7 +719,7 @@ rollBtn.addEventListener("click", () => {
 async function loadRoom() {
 
   const res = await fetch(
-    `/api/life/room/${roomId}`
+    `${API_BASE}/api/life/room/${roomId}`
   );
 
   const data = await res.json();
@@ -734,7 +734,7 @@ async function loadRoom() {
   // =========================
 
   const meRes = await fetch(
-    `/api/life/me/${roomId}?session=${session}`
+    `${API_BASE}/api/life/me/${roomId}?session=${session}`
   );
 
   const meData = await meRes.json();
