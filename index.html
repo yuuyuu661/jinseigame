@@ -353,14 +353,15 @@ rollBtn.addEventListener("click", () => {
 
   let count = 0;
   const interval = setInterval(() => {
-    diceEl.textContent = Math.floor(Math.random() * 6) + 1;
+    const temp = Math.floor(Math.random() * 6) + 1;
+    diceImage.src = `/static/dice/${temp}.png`;
     count++;
 
     if (count >= 18) {
       clearInterval(interval);
 
       const dice = Math.floor(Math.random() * 6) + 1;
-      diceEl.textContent = dice;
+      diceImage.src = `/static/dice/${dice}.png`;
       diceEl.classList.remove("shake");
 
       position = Math.min(position + dice, 99);
