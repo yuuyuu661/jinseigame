@@ -109,18 +109,15 @@ body {
 }
 
 .dice {
-  width: 96px;
-  height: 96px;
+  width: 120px;
+  height: 120px;
   margin: 0 auto 16px;
-  background: #fff;
-  border-radius: 20px;
-  border: 4px solid #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.2rem;
-  font-weight: 900;
-  box-shadow: 0 8px 0 #bbb;
+}
+
+.dice img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .dice.shake {
@@ -182,7 +179,12 @@ button:active {
   </div>
 
   <div class="control">
-    <div class="dice" id="dice">🎲</div>
+    <div class="dice">
+      <img
+        id="diceImage"
+        src="/static/dice/1.png"
+      >
+    </div>
     <button id="rollBtn">サイコロを振る</button>
     <div class="result" id="result">スタート！</div>
   </div>
@@ -220,7 +222,8 @@ const bads = [
 
 const board = document.getElementById("board");
 const player = document.getElementById("player");
-const diceEl = document.getElementById("dice");
+const diceEl = document.querySelector(".dice");
+const diceImage = document.getElementById("diceImage");
 const result = document.getElementById("result");
 const rollBtn = document.getElementById("rollBtn");
 
