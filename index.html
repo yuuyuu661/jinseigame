@@ -694,14 +694,32 @@ rollBtn.addEventListener("click", () => {
     if (count >= 18) {
       clearInterval(interval);
 
-      const dice = Math.floor(Math.random() * 6) + 1;
+      const res = await fetch(
+
+        `${API_BASE}/api/life/roll/${roomId}?session=${session}`,
+
+        {
+          method: "POST"
+        }
+
+      );
+
+      const data = await res.json();
+
+      const dice = data.dice;
+
+      position = data.position;
+
       diceImage.src = `/static/dice/${dice}.png`;
+
       diceEl.classList.remove("shake");
 
-      position = Math.min(position + dice, 99);
       movePlayer();
 
-      const tile = tiles[position];
+      const tile = {
+        type: data.tile.tile_type,
+        text: data.tile.tile_text
+      };
 
       result.innerHTML = `
         出目：${dice}<br>
