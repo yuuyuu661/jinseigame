@@ -729,6 +729,18 @@ async function loadRoom() {
     text: t.tile_text
   }));
 
+  // =========================
+  // 自分の現在位置取得
+  // =========================
+
+  const meRes = await fetch(
+    `/api/life/me/${roomId}?session=${session}`
+  );
+
+  const meData = await meRes.json();
+
+  position = meData.position;
+
   renderBoard();
 
 }
