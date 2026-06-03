@@ -286,27 +286,53 @@ function makeTileData() {
 }
 
 function getPathPositions() {
-  const points = [];
 
-  const rows = [
-    { y: 80, x1: 6, x2: 86, count: 14, dir: 1 },
-    { y: 68, x1: 86, x2: 14, count: 13, dir: -1 },
-    { y: 56, x1: 14, x2: 86, count: 13, dir: 1 },
-    { y: 44, x1: 86, x2: 14, count: 13, dir: -1 },
-    { y: 32, x1: 14, x2: 86, count: 13, dir: 1 },
-    { y: 20, x1: 86, x2: 14, count: 13, dir: -1 },
-    { y: 8,  x1: 14, x2: 86, count: 21, dir: 1 }
+  return [
+
+    { x: 8,  y: 84 },
+    { x: 16, y: 84 },
+    { x: 24, y: 84 },
+    { x: 32, y: 84 },
+    { x: 40, y: 84 },
+
+    { x: 50, y: 82 },
+    { x: 58, y: 78 },
+    { x: 64, y: 72 },
+
+    { x: 70, y: 64 },
+    { x: 74, y: 56 },
+
+    { x: 76, y: 48 },
+    { x: 74, y: 40 },
+
+    { x: 68, y: 32 },
+    { x: 60, y: 26 },
+
+    { x: 50, y: 22 },
+    { x: 40, y: 22 },
+
+    { x: 30, y: 26 },
+    { x: 22, y: 34 },
+
+    { x: 18, y: 44 },
+    { x: 18, y: 54 },
+
+    { x: 22, y: 64 },
+    { x: 30, y: 72 },
+
+    { x: 40, y: 76 },
+    { x: 50, y: 76 },
+
+    { x: 58, y: 72 },
+    { x: 62, y: 64 },
+
+    { x: 62, y: 56 },
+    { x: 58, y: 50 },
+
+    { x: 50, y: 46 }
+
   ];
 
-  rows.forEach(row => {
-    for (let i = 0; i < row.count; i++) {
-      const t = i / (row.count - 1);
-      const x = row.x1 + (row.x2 - row.x1) * t;
-      points.push({ x, y: row.y });
-    }
-  });
-
-  return points.slice(0, 100);
 }
 
 function renderBoard() {
