@@ -686,7 +686,7 @@ rollBtn.addEventListener("click", () => {
   diceEl.classList.add("shake");
 
   let count = 0;
-  const interval = setInterval(() => {
+  const interval = setInterval(async () => {
     const temp = Math.floor(Math.random() * 6) + 1;
     diceImage.src = `/static/dice/${temp}.png`;
     count++;
