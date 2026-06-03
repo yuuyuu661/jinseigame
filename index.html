@@ -71,6 +71,20 @@ body {
   overflow: hidden;
 }
 
+.board-decoration{
+
+  position: absolute;
+
+  transform:
+    translate(-50%, -50%);
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
 .tile {
   position: absolute;
   width: 5%;
@@ -613,6 +627,32 @@ function renderBoard() {
 
   const positions = getPathPositions();
 
+  const decorations =
+    getDecorationPositions();
+
+  decorations.forEach(deco => {
+
+    const img =
+      document.createElement("img");
+
+    img.src = deco.image;
+
+    img.className =
+      "board-decoration";
+
+    img.style.left =
+      deco.x + "%";
+
+    img.style.top =
+      deco.y + "%";
+
+    img.style.width =
+      deco.width + "%";
+
+    board.appendChild(img);
+
+  });
+
   // =========================
   // 線を生成
   // =========================
@@ -715,6 +755,29 @@ function renderBoard() {
   });
 
   movePlayer();
+
+}
+
+
+function getDecorationPositions(){
+
+  return [
+
+    {
+      x: 45,
+      y: 42,
+      width: 18,
+      image: "/static/images/castle.png"
+    },
+
+    {
+      x: 70,
+      y: 18,
+      width: 12,
+      image: "/static/images/star.png"
+    }
+
+  ];
 
 }
 
