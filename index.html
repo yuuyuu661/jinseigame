@@ -299,11 +299,11 @@ const rollBtn = document.getElementById("rollBtn");
 let position = 0;
 let tiles = [];
 
-const roomId =
-  window.location.pathname.split("/").pop();
-
 const params =
   new URLSearchParams(window.location.search);
+
+const roomId =
+  params.get("room");
 
 const session =
   params.get("session");
