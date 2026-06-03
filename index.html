@@ -255,6 +255,9 @@ button:active {
       >
     </div>
     <button id="rollBtn">サイコロを振る</button>
+    <div id="diceCountText">
+      サイコロ所持数: 0
+    </div>
     <div class="result" id="result">スタート！</div>
   </div>
 </div>
@@ -725,6 +728,11 @@ rollBtn.addEventListener("click", () => {
 
       diceCount--;
 
+      document.getElementById(
+        "diceCountText"
+      ).innerText =
+        `サイコロ所持数: ${diceCount}`;
+
       diceImage.src = `/static/dice/${dice}.png`;
 
       diceEl.classList.remove("shake");
@@ -778,6 +786,10 @@ async function loadRoom() {
   position = meData.position;
 
   diceCount = meData.dice_count;
+  document.getElementById(
+    "diceCountText"
+  ).innerText =
+    `サイコロ所持数: ${diceCount}`;
 
   renderBoard();
 
