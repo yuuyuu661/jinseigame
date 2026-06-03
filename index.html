@@ -336,6 +336,17 @@ const bads = [
   "ドリンクを1つ頼む"
 ];
 
+const diceSound = new Audio(
+  "/static/sounds/dice_roll.mp3"
+);
+
+const bgm = new Audio(
+  "/static/sounds/poppop.mp3"
+);
+
+bgm.loop = true;
+bgm.volume = 0.25;
+
 const board = document.getElementById("board");
 const player = document.getElementById("player");
 const diceEl = document.querySelector(".dice");
