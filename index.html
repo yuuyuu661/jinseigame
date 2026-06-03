@@ -776,6 +776,8 @@ rollBtn.addEventListener("click", () => {
 
         diceEl.classList.remove("shake");
 
+        rollBtn.disabled = false;
+
         clearInterval(interval);
 
         return;
