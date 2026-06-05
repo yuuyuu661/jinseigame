@@ -64,7 +64,7 @@ body {
 
   position: relative;
 
-  overflow: hidden;
+  overflow: visible;
 
   aspect-ratio: 16 / 10;
 
@@ -1047,12 +1047,17 @@ boardContainer.addEventListener(
     // ドラッグ開始
     // =====================
 
-    if (
-      e.touches.length === 1 &&
-      scale > 1
-    ) {
+    if (e.touches.length === 1) {
 
       isDragging = true;
+
+      lastX =
+        e.touches[0].clientX;
+
+      lastY =
+        e.touches[0].clientY;
+
+    }
 
       lastX =
         e.touches[0].clientX;
@@ -1156,8 +1161,6 @@ boardContainer.addEventListener(
   "mousedown",
 
   (e) => {
-
-    if (scale <= 1) return;
 
     isMouseDragging = true;
 
