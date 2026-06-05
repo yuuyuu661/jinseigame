@@ -58,6 +58,18 @@ body {
   margin-bottom: 18px;
 }
 
+.board-view {
+
+  width: 100%;
+
+  overflow: hidden;
+
+  position: relative;
+
+  border-radius: 28px;
+
+}
+
 .board {
   position: relative;
   width: 100%;
@@ -293,18 +305,6 @@ button:active {
 
   }
 
-  .wrap {
-
-    transform: scale(0.55);
-
-    transform-origin: top center;
-
-    width: 180%;
-
-    margin-left: -40%;
-
-  }
-
 }
   
 </style>
@@ -317,11 +317,32 @@ button:active {
 <div class="wrap">
   <div class="title">🎲 人生ゲーム 🎲</div>
 
-  <div class="board" id="board">
-    <div class="player" id="player"></div>
-  </div>
+  <div class="wrap">
+    <div class="title">🎲 人生ゲーム 🎲</div>
 
-  <div class="control">
+    <div class="board-view">
+
+      <div class="board" id="board">
+        <div class="player" id="player"></div>
+      </div>
+
+    </div>
+
+    <div class="control">
+    <div style="margin-bottom:12px;">
+
+      🔍 ズーム
+
+      <input
+        type="range"
+        id="zoomSlider"
+        min="1"
+        max="4"
+        step="0.1"
+        value="1"
+      >
+
+    </div>
     <div class="dice">
       <img
         id="diceImage"
@@ -951,9 +972,13 @@ document.body.addEventListener(
 
 );
 
-const boardContainer = board;
+const boardContainer =
+  document.querySelector(".board-view");
 
-let scale = 1;
+let scale =
+  window.innerWidth <= 700
+    ? 0.55
+    : 1;
 
 let posX = 0;
 let posY = 0;
@@ -1065,7 +1090,7 @@ boardContainer.addEventListener(
       scale *= zoom;
 
       scale = Math.max(
-        1,
+        0.55,
         Math.min(scale, 4)
       );
 
@@ -1118,6 +1143,28 @@ boardContainer.addEventListener(
   () => {
 
     isDragging = false;
+
+  }
+
+);
+
+const zoomSlider =
+  document.getElementById(
+    "zoomSlider"
+  );
+
+zoomSlider.addEventListener(
+
+  "input",
+
+  () => {
+
+    scale =
+      Number(
+        zoomSlider.value
+      );
+
+    updateTransform();
 
   }
 
