@@ -61,6 +61,8 @@ body {
 .board {
   position: relative;
   width: 100%;
+  touch-action: none;
+  transform-origin: center center;
   aspect-ratio: 16 / 10;
   background:
     radial-gradient(circle at 20% 20%, #fff9c4, transparent 22%),
@@ -938,10 +940,9 @@ document.body.addEventListener(
 
 );
 
-const boardContainer =
-  document.querySelector(".board-container");
+const boardContainer = board;
 
-let scale = 1.2;
+let scale = 1;
 
 let posX = 0;
 let posY = 0;
@@ -1007,7 +1008,10 @@ boardContainer.addEventListener(
     // ドラッグ開始
     // =====================
 
-    if (e.touches.length === 1) {
+    if (
+      e.touches.length === 1 &&
+      scale > 1
+    ) {
 
       isDragging = true;
 
@@ -1050,8 +1054,8 @@ boardContainer.addEventListener(
       scale *= zoom;
 
       scale = Math.max(
-        0.7,
-        Math.min(scale, 3)
+        1,
+        Math.min(scale, 4)
       );
 
       startDistance =
@@ -1107,6 +1111,8 @@ boardContainer.addEventListener(
   }
 
 );
+
+updateTransform();
 
 loadRoom();
 </script>
