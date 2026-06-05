@@ -60,11 +60,13 @@ body {
 
 .board-view {
 
-  width:100%;
+  width: 100%;
 
-  position:relative;
+  position: relative;
 
-  overflow:auto;
+  overflow: hidden;
+
+  aspect-ratio: 16 / 10;
 
 }
 
@@ -297,9 +299,13 @@ button:active {
 
   .board {
 
+    width: 180vw;
+
+    max-width: none;
+
     touch-action: none;
 
-    transform-origin: center center;
+    transform-origin: top left;
 
   }
 
@@ -315,8 +321,6 @@ button:active {
 <div class="wrap">
   <div class="title">🎲 人生ゲーム 🎲</div>
 
-  <div class="wrap">
-    <div class="title">🎲 人生ゲーム 🎲</div>
 
     <div class="board-view">
 
@@ -973,7 +977,10 @@ document.body.addEventListener(
 const boardContainer =
   document.querySelector(".board-view");
 
-let scale = 1;
+let scale =
+  window.innerWidth <= 700
+    ? 0.55
+    : 1;
 
 let posX = 0;
 let posY = 0;
@@ -993,7 +1000,7 @@ let isMouseDragging = false;
 function updateTransform() {
 
   board.style.transform =
-    `translate(${posX}px, ${posY}px) scale(${scale})`;
+    `scale(${scale}) translate(${posX}px, ${posY}px)`;
 
 }
 
