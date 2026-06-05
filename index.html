@@ -61,8 +61,6 @@ body {
 .board {
   position: relative;
   width: 100%;
-  transform-origin: top left;
-  will-change: transform;
   aspect-ratio: 16 / 10;
   background:
     radial-gradient(circle at 20% 20%, #fff9c4, transparent 22%),
@@ -74,17 +72,7 @@ body {
   overflow: hidden;
 }
   
-.board-container {
 
-  width: 100%;
-
-  overflow: hidden;
-
-  position: relative;
-
-  touch-action: none;
-
-}
 
 .board-decoration{
 
@@ -316,12 +304,8 @@ button:active {
 <div class="wrap">
   <div class="title">🎲 人生ゲーム 🎲</div>
 
-  <div class="board-container">
-
-    <div class="board" id="board">
-      <div class="player" id="player"></div>
-    </div>
-
+  <div class="board" id="board">
+    <div class="player" id="player"></div>
   </div>
 
   <div class="control">
